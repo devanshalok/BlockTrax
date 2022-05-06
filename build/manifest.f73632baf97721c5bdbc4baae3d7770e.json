@@ -1,0 +1,9 @@
+{
+  "name": "Block Trax",
+  "short_name": "BTrax",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": ".",
+  "description": "Seamless and transparent funds management at the palm of your hands",
+  "background_color": "#ffffff"
+}

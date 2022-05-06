@@ -1,8 +1,8 @@
 /* Main app configs go here */
 
 export const appConfig = {
-  name: 'React DApp Boilerplate',
-  shortName: 'ReactDAppBoilerplate',
-  description: 'Front-end foundational boilerplate for Ethereum dApps',
+  name: 'Block Trax',
+  shortName: 'BTrax',
+  description: 'Seamless and transparent funds management at the palm of your hands',
   splashScreenBackground: '#ffffff'
 }

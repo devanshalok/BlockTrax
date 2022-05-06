@@ -6,7 +6,7 @@
 
 /* global styles go here */
 :global(body) {
-  background: $white;
+  background-color: #222222;  
   color: $darkGrey35;
   font-family: 'Asap-Regular', sans-serif;
 
@@ -15,6 +15,7 @@
     max-width: 860px;
     padding: 20px;
     margin: 0 auto;
+    background-color: $white35;
   }
 
   ul {

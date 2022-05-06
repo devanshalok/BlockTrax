@@ -1,5 +1,5 @@
 import React, { Component }   from 'react'
-import { MuiThemeProvider }   from '@material-ui/core/styles'
+import { ThemeProvider }   from '@material-ui/core/styles'
 import {
   HashRouter,
   Route,
@@ -16,7 +16,7 @@ import './styles.scss' // global styles
 class App extends Component {
   render() {
     return (
-      <MuiThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
         <HashRouter>
           <div>
             <Header />
@@ -29,7 +29,7 @@ class App extends Component {
             </div>
           </div>
         </HashRouter>
-      </MuiThemeProvider>
+      </ThemeProvider>
     )
   }
 }

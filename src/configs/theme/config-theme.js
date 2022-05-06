@@ -1,4 +1,4 @@
-import { createMuiTheme } from '@material-ui/core/styles'
+import { createTheme } from '@material-ui/core/styles'
 import { getStyles }      from 'core/libs/lib-style-helpers'
 
 const colors = getStyles([
@@ -7,7 +7,7 @@ const colors = getStyles([
   'secondary'
 ])
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: colors.primary

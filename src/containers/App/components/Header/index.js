@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes            from 'prop-types'
 import { withRouter }       from 'react-router-dom'
 import AppBar               from 'components/AppBar'
-import Typography           from 'components/Typography'
+import { Typography }           from '@material-ui/core'
 import Toolbar              from '@material-ui/core/Toolbar'
 import IconButton           from '@material-ui/core/IconButton'
 import Menu                 from '@material-ui/core/Menu'
@@ -39,8 +39,8 @@ class Header extends Component {
           open={Boolean(anchorEl)}
           onClose={this.close}
         >
-          <MenuItem data-link="account" onClick={this.goTo}>Menu Option 1</MenuItem>
-          <MenuItem data-link="settings" onClick={this.goTo}>Menu Option 2</MenuItem>
+          <MenuItem data-link="account" onClick={this.goTo}>Account</MenuItem>
+          <MenuItem data-link="logout" onClick={this.goTo}>Log out</MenuItem>
         </Menu>
       </div>
     )
