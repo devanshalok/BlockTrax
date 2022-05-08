@@ -1,2 +1,15 @@
 :local(.styles) {
+    margin-bottom: 10px;
+    max-width: 400px;
+    font-family: 'Roboto';
+
+    .MuiPaper-root {
+        background-color: #1D2024;
+        color: $white35;
+    }
+
+    .MuiTypography-body1 {
+        color: $dark2;
+        font-weight: bold;
+    }
 }

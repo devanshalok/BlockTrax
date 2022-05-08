@@ -5,22 +5,15 @@ import { styles }              from './styles.scss'
 const CardComponent = () => {
   return (
     <div className={styles}>
-      <Card sx={{ minWidth: 100, backgroundColor: 'black' }}>
+      <Card sx={{ backgroundColor: '#1D2024' }}>
         <CardContent
           sx={{ paddingLeft: '0px', paddingRight: '0px', paddingTop: '0px' }}
         >
           <Typography
-            variant="body1"
             component="div"
-            sx={{
-            paddingLeft: '5px',
-            color: '#606166',
-            padding: '8px',
-            fontFamily: 'Roboto',
-            fontWeight: '500'
-          }}
+            variant="body1"
           >
-            Total Projects :
+            Total Projects
           </Typography>
           <Typography sx={{ padding: '8px', color: 'white' }} variant="h3">
             10
