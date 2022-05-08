@@ -23,8 +23,8 @@ class App extends Component {
             <Footer />
             <div className="app-shell">
               <Switch>
-                <Route path="/home" component={HomeView} />
-                <Redirect from="/" to="/home" />
+                <Route path="/dashboard" component={HomeView} />
+                <Redirect from="/" to="/dashboard" />
               </Switch>
             </div>
           </div>

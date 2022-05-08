@@ -11,7 +11,11 @@ import { styles } from './styles.scss'
 const TableComponent = () => {
   const createData = (name, calories, fat, carbs, protein) => {
     return {
-      name, calories, fat, carbs, protein
+      name,
+      calories,
+      fat,
+      carbs,
+      protein
     }
   }
 
@@ -50,18 +54,14 @@ const TableComponent = () => {
                 <TableCell align="right">{row.carbs}</TableCell>
                 <TableCell align="right">{row.protein}</TableCell>
               </TableRow>
-                ))}
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
     </div>
   )
 }
-TableComponent.propTypes = {
+TableComponent.propTypes = {}
 
-}
-
-TableComponent.defaultProps = {
-
-}
+TableComponent.defaultProps = {}
 export default TableComponent
