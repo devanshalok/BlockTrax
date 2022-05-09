@@ -1,5 +1,11 @@
 :local(.styles) {
     font-family: 'Roboto';
+    .MuiInputBase-root  {
+        color: $white35;
+    }
+    .ForwardRef-iconButton-2 {
+        color: $white35;   
+    }
     .ForwardRef-root-1 {
         margin-bottom: 15px;
     }
