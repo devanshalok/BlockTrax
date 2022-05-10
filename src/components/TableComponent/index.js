@@ -56,7 +56,7 @@ const TableComponent = () => {
         value={searched}
         onChange={searchVal => requestSearch(searchVal)}
         onCancelSearch={() => cancelSearch()}
-        style={{ backgroundColor: '#212121' }}
+        style={{ backgroundColor: '#212121', marginBottom: '10px' }}
       />
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">

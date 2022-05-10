@@ -17,12 +17,12 @@ const HomeViewTypography = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(1)
 }))
 
-class HomeView extends Component {
+class AuditorView extends Component {
   render() {
     return (
       <div className="container">
         <HomeViewTypography variant="h6">
-          NGO Dashboard
+          Auditor Dashboard
         </HomeViewTypography>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container columnSpacing={14}>
@@ -46,4 +46,4 @@ class HomeView extends Component {
   }
 }
 
-export default HomeView
+export default AuditorView
