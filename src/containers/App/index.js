@@ -12,6 +12,9 @@ import Header                   from './components/Header'
 import Footer                   from './components/Footer'
 
 import './styles.scss' // global styles
+import ProjectNgo from '../ProjectNgo'
+import AuditorView from '../AuditorView'
+import ProjectAuditor from '../ProjectAuditor'
 
 class App extends Component {
   render() {
@@ -24,6 +27,10 @@ class App extends Component {
             <div className="app-shell">
               <Switch>
                 <Route path="/dashboard" component={HomeView} />
+                <Route path="/projectngo" component={ProjectNgo} />
+                <Route path="/auditorview" component={AuditorView} />
+                <Route path="/projectauditor" component={ProjectAuditor} />
+
                 <Redirect from="/" to="/dashboard" />
               </Switch>
             </div>
