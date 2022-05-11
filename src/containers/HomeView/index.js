@@ -17,7 +17,8 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const HomeViewTypography = styled(Typography)(({ theme }) => ({
   color: '#f4f3ef',
-  marginBottom: theme.spacing(1)
+  marginBottom: theme.spacing(1),
+  marginTop: theme.spacing(2)
 }))
 
 const HomeView = () => {
@@ -25,6 +26,7 @@ const HomeView = () => {
   const [totalBudget, setTotalBudget] = useState(0);
   const [collectionUnsub, setCollectionUnsub] = useState({ f: null });
   const currentUser = useAuth().currentUser;
+  const tableHeaders=['S no.', 'Project Name', 'Budget Allocated', 'Amount Spent', 'Audited']
   
   function getCollectionData() {
     if (collectionUnsub.f) collectionUnsub.f();
@@ -34,7 +36,6 @@ const HomeView = () => {
         const projects = [];
         let budget = 0;
         querySnapshot.forEach((doc) => {
-          console.log(doc.data());
           projects.push(doc.data());
           budget += parseInt(doc.data().budget);
         });
@@ -55,7 +56,7 @@ const HomeView = () => {
       if (collectionUnsub.f) collectionUnsub.f();
     };
   }, [currentUser]);
-  
+
   return (
     <div className="container">
       <HomeViewTypography variant="h6">
@@ -77,7 +78,7 @@ const HomeView = () => {
       <HomeViewTypography variant="subtitle1">
         Projects
       </HomeViewTypography>
-      <TableComponent />
+      <TableComponent headers={tableHeaders} data={collectionData} />
     </div>
   );
 }
