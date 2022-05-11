@@ -38,7 +38,7 @@ class ProjectNgo extends Component {
 
           </Grid>
         </Box>
-        <TableComponent />
+        {/* <TableComponent /> */}
         <Button style={{ marginTop: '30px', marginLeft: '600px' }}>SEND FOR AUDIT!</Button>
       </div>
     )

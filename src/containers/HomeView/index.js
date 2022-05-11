@@ -36,8 +36,10 @@ const HomeView = () => {
         const projects = [];
         let budget = 0;
         querySnapshot.forEach((doc) => {
-          projects.push(doc.data());
-          budget += parseInt(doc.data().budget);
+          const data = doc.data();
+          data.id = doc.id;
+          projects.push(data);
+          budget += parseInt(data.budget);
         });
         setCollectionData(projects);
         setTotalBudget(budget);

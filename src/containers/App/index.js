@@ -11,8 +11,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import LoginComponent from "./components/LoginComponent";
 import PrivateRoute from "../../PrivateRoute";
+import ProjectNgo from '../ProjectNgo'
 import "./styles.scss"; // global styles
-// import ProjectNgo from '../ProjectNgo'
 // import AuditorView from '../AuditorView'
 // import ProjectAuditor from '../ProjectAuditor'
 
@@ -30,6 +30,10 @@ function App() {
               <Route path="/dashboard">
                 <PrivateRoute claim="verified">
                   <HomeView />
+                </PrivateRoute>
+              </Route><Route path="/projects">
+                <PrivateRoute claim="verified">
+                  <ProjectNgo />
                 </PrivateRoute>
               </Route>
               <Route path="/" component={LoginComponent} />

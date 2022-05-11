@@ -15,19 +15,20 @@ const TableComponent = (props) => {
   const [rows, setRows] = useState([])
   const [filtRows, setFiltRows] = useState([])
   const [searched, setSearched] = useState('')
-  const createData = (no, name, budget, spend, audited) => {
+  const createData = (no, name, budget, spend, audited, id) => {
     return {
       no,
       name,
       budget,
       spend,
-      audited
+      audited,
+      id
     }
   }
   let ogRows = [];
   useEffect(() => {
     for(let i=0; i<props.data.length; i++) {
-      ogRows.push(createData(i+1, props.data[i].name, props.data[i].budget, 1000, props.data[i].audited));
+      ogRows.push(createData(i+1, props.data[i].name, props.data[i].budget, 1000, props.data[i].audited, props.data[i].id));
     }
     setRows(ogRows);
     setFiltRows(ogRows);
@@ -78,6 +79,7 @@ const TableComponent = (props) => {
               return(<StyledTableRow
                 key={row.name}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                onClick={() => {window.setTimeout(()=> window.location.href ='#/projects?projectId='+row.id, 300)}}
               >
                 <TableCell component="th" scope="row">
                   {row.no}
