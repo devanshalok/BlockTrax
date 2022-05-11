@@ -1,9 +1,8 @@
 {
-  "short_name": "YourDAppName",
+  "short_name": "BlockTrax",
   "name": "A description of your dApp",
-  "start_url": "./?utm_source=web_app_manifest",
-  "icons": [
-    {
+  "start_url": "./",
+  "icons": [{
       "src": "/images/chrome-touch-icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
