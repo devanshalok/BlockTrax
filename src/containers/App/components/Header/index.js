@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import PropTypes            from 'prop-types'
 import AppBar               from 'components/AppBar'
 import { Typography }       from '@material-ui/core'
@@ -8,20 +8,13 @@ import Menu                 from '@material-ui/core/Menu'
 import MenuItem             from '@material-ui/core/MenuItem'
 import AccountCircle        from '@material-ui/icons/AccountCircle'
 import { appConfig }        from 'configs/config-main'
+import { useAuth } from "../../../../contexts/AuthContext";
 import { styles }           from './styles.scss'
 
-class Header extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      anchorEl: null
-    }
-  }
-
-  getMenu() {
-    const { anchorEl } = this.state
-
+const Header = (props) => {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const { logout } = useAuth();
+  const getMenu = () => {
     return (
       <div>
         <IconButton
@@ -29,60 +22,51 @@ class Header extends Component {
           color="inherit"
           className="dropdown"
           aria-owns={anchorEl ? 'simple-menu' : null}
-          onClick={this.handleClick}
+          onClick={handleClick}
         >
           <AccountCircle />
         </IconButton>
         <Menu
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}
-          onClose={this.close}
+          onClose={close}
         >
-          <MenuItem data-link="account" onClick={this.goTo}>Account</MenuItem>
-          <MenuItem data-link="logout" onClick={this.goTo}>Log out</MenuItem>
+          <MenuItem data-link="account" onClick={goTo}>Account</MenuItem>
+          <MenuItem data-link="logout" onClick={goTo}>Log out</MenuItem>
         </Menu>
       </div>
     )
   }
 
-  goTo = (evt) => {
-    const { history } = this.props
-    const { link } = evt.currentTarget.dataset
-
-    history.push(link)
-    this.close()
+  const goTo = (evt) => {
+    evt.preventDefault();
+    logout();
   }
 
-  handleClick = (event) => {
-    this.setState({ anchorEl: event.currentTarget })
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
   }
 
-  close = () => {
-    this.setState({ anchorEl: null })
+  const close = () => {
+    setAnchorEl(null);
   }
-
-  render() {
-    const menu = this.getMenu()
-
-    return (
-      <div className={styles}>
-        <AppBar>
-          <Toolbar>
-            <Typography variant="title" color="inherit">
-              {appConfig.name}
-            </Typography>
-            <div className="dropdown">{menu}</div>
-          </Toolbar>
-        </AppBar>
-      </div>
-    )
-  }
+  const menu = getMenu();
+  return (
+    <div className={styles}>
+      <AppBar>
+        <Toolbar>
+          <Typography variant="title" color="inherit">
+            {appConfig.name}
+          </Typography>
+          <div className="dropdown">{menu}</div>
+        </Toolbar>
+      </AppBar>
+    </div>
+  )
 }
 
 Header.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.string.isRequired
-  }).isRequired
+
 }
 
 export default Header

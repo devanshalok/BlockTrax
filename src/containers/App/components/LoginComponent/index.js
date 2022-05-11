@@ -9,7 +9,7 @@ import { useAuth } from '../../../../contexts/AuthContext'
 import Stack from '@mui/material/Stack'
 import Snackbar from '@mui/material/Snackbar'
 import MuiAlert from '@mui/material/Alert'
-
+import { withRouter } from 'react-router-dom'; 
 
 const Alert = React.forwardRef((props, ref) => {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
@@ -22,8 +22,7 @@ const LoginComponent = ({ ...props }) => {
   const { currentUser } = useAuth()
 
   useEffect(() => {
-    debugger
-    if (currentUser && !props?.location?.state?.errorMessage) { window.location.href = '/dashboard' }
+    if (currentUser && !props?.location?.state?.errorMessage) { window.location.href = '/#/dashboard' }
   }, [])
 
   const { login } = useAuth()
@@ -224,4 +223,4 @@ const LoginComponent = ({ ...props }) => {
   )
 }
 
-export default LoginComponent
+export default withRouter(LoginComponent);

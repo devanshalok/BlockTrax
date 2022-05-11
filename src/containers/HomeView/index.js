@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Box                  from '@mui/material/Box'
 import Grid                 from '@mui/material/Grid'
 import Paper                from '@mui/material/Paper'
@@ -7,6 +7,7 @@ import { Typography }       from '@material-ui/core'
 import CardComponent        from '../../components/CardComponent'
 import TableComponent       from '../../components/TableComponent'
 import { Button } from '@mui/material'
+import {withRouter} from 'react-router-dom'
 
 const Item = styled(Paper)(({ theme }) => ({
   marginBottom: theme.spacing(1)
@@ -17,8 +18,7 @@ const HomeViewTypography = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(1)
 }))
 
-class HomeView extends Component {
-  render() {
+const HomeView = () => {
     return (
       <div className="container">
         <HomeViewTypography variant="h6">
@@ -43,7 +43,6 @@ class HomeView extends Component {
         <TableComponent />
       </div>
     )
-  }
 }
 
-export default HomeView
+export default withRouter(HomeView);

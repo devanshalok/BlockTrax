@@ -1,36 +1,45 @@
-import React, { Component } from 'react'
-import { ThemeProvider } from '@material-ui/core/styles'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import theme from 'configs/theme/config-theme'
-import HomeView from 'containers/HomeView'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import LoginComponent from './components/LoginComponent'
-
-import './styles.scss' // global styles
+import React, { useEffect } from "react";
+import { ThemeProvider } from "@material-ui/core/styles";
+import {
+  HashRouter,
+  Route,
+  Redirect,
+  Switch
+} from 'react-router-dom'
+import theme from "configs/theme/config-theme";
+import HomeView from "../HomeView";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import LoginComponent from "./components/LoginComponent";
+import PrivateRoute from "../../PrivateRoute";
+import "./styles.scss"; // global styles
 // import ProjectNgo from '../ProjectNgo'
 // import AuditorView from '../AuditorView'
 // import ProjectAuditor from '../ProjectAuditor'
 
-class App extends Component {
-  render() {
-    return (
-      <ThemeProvider theme={theme}>
-        <div>
-          <Header />
-          <Footer />
-          <Router>
+function App() {
+  useEffect(() => {}, []);
+
+  return (
+    <ThemeProvider theme={theme}>
+      <HashRouter>
+          <div>
+            <Header />
+            <Footer />
             <div className="app-shell">
-              <Routes>
-                <Route exact path="/" element={<LoginComponent />} />
-                <Route exact path="/dashboard" element={<HomeView />} />
-              </Routes>
+              <Switch>
+              <Route path="/dashboard">
+                <PrivateRoute claim="verified">
+                  <HomeView />
+                </PrivateRoute>
+              </Route>
+              <Route path="/" component={LoginComponent} />
+              </Switch>
             </div>
-          </Router>
-        </div>
-      </ThemeProvider>
-    )
-  }
+          </div>
+        </HashRouter>              
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App;
