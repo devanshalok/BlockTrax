@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes            from 'prop-types'
-import { withRouter }       from 'react-router-dom'
 import AppBar               from 'components/AppBar'
 import { Typography }       from '@material-ui/core'
 import Toolbar              from '@material-ui/core/Toolbar'
@@ -86,4 +85,4 @@ Header.propTypes = {
   }).isRequired
 }
 
-export default withRouter(Header)
+export default Header
