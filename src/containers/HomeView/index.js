@@ -7,7 +7,6 @@ import { Typography }       from '@material-ui/core'
 import CardComponent        from '../../components/CardComponent'
 import TableComponent       from '../../components/TableComponent'
 import { Button } from '@mui/material'
-import {withRouter} from 'react-router-dom'
 
 const Item = styled(Paper)(({ theme }) => ({
   marginBottom: theme.spacing(1)
@@ -45,4 +44,4 @@ const HomeView = () => {
     )
 }
 
-export default withRouter(HomeView);
+export default HomeView;

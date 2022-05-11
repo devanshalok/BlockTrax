@@ -22,7 +22,9 @@ const LoginComponent = ({ ...props }) => {
   const { currentUser } = useAuth()
 
   useEffect(() => {
-    if (currentUser && !props?.location?.state?.errorMessage) { window.location.href = '/#/dashboard' }
+    if (currentUser && !props?.location?.state?.errorMessage) { window.setTimeout(()=> {
+      window.location.href = '#/dashboard';
+    }, 300); }
   }, [])
 
   const { login } = useAuth()
@@ -41,10 +43,10 @@ const LoginComponent = ({ ...props }) => {
     login(email, password)
       .then(() => {
         if (props?.location?.state?.from.pathname) {
-          window.location.href = props.location.state.from.pathname
           if (props?.location?.state?.errorMessage) props.location.state.errorMessage = undefined
+          window.location.reload();
         } else {
-          window.location.href = '/#/dashboard'
+          window.location.reload();
         }
       })
       .catch((err) => {
