@@ -11,7 +11,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import LoginComponent from "./components/LoginComponent";
 import PrivateRoute from "../../PrivateRoute";
-import ProjectNgo from '../ProjectNgo'
+import ProjectNgo from '../ProjectNgo';
+import LandingPage from '../LandingPage';
 import "./styles.scss"; // global styles
 // import AuditorView from '../AuditorView'
 // import ProjectAuditor from '../ProjectAuditor'
@@ -22,25 +23,31 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <HashRouter>
-          <div>
-            <Header />
-            <Footer />
-            <div className="app-shell">
-              <Switch>
-              <Route path="/dashboard">
-                <PrivateRoute claim="verified">
+        <div>
+            <Switch>
+            <Route exact path="/" component={LandingPage} />
+            <Route path="/login" component={LoginComponent} />
+            <Route path="/dashboard">
+              <PrivateRoute claim="verified">
+                <Header />
+                <Footer />
+                <div className="app-shell">
                   <HomeView />
-                </PrivateRoute>
-              </Route><Route path="/projects">
-                <PrivateRoute claim="verified">
-                  <ProjectNgo />
-                </PrivateRoute>
-              </Route>
-              <Route path="/" component={LoginComponent} />
-              </Switch>
-            </div>
-          </div>
-        </HashRouter>              
+                </div>  
+              </PrivateRoute>
+            </Route>
+            <Route path="/projects">
+              <PrivateRoute claim="verified">
+              <Header />
+              <Footer />
+              <div className="app-shell">
+                <ProjectNgo />
+              </div>
+              </PrivateRoute>
+            </Route>
+            </Switch>
+        </div>
+      </HashRouter>              
     </ThemeProvider>
   );
 }
