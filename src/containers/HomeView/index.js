@@ -5,7 +5,7 @@ import Paper                from '@mui/material/Paper'
 import { styled }           from '@mui/material/styles'
 import { Typography }       from '@material-ui/core'
 import { Button }           from '@mui/material'
-import { query, collection, onSnapshot, where } from "firebase/firestore";
+import { query, collection, onSnapshot, where, getDocs, doc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useAuth } from "../../contexts/AuthContext";
 import CardComponent        from '../../components/CardComponent'
@@ -26,30 +26,52 @@ const HomeView = () => {
   const [totalBudget, setTotalBudget] = useState(0);
   const [collectionUnsub, setCollectionUnsub] = useState({ f: null });
   const currentUser = useAuth().currentUser;
-  const tableHeaders=['S no.', 'Project Name', 'Budget Allocated', 'Amount Spent', 'Audited']
+  const [currentUserId, setCurrentUserId] = useState('');
+  const tableHeaders=['S no.', 'Project Name', 'Budget Allocated', 'Amount Spent', 'Verified']
   
   function getCollectionData() {
     if (collectionUnsub.f) collectionUnsub.f();
-    const unsub = onSnapshot(
-      query(collection(db, `projects`)),
-      (querySnapshot) => {
-        const projects = [];
-        let budget = 0;
-        querySnapshot.forEach((doc) => {
-          const data = doc.data();
-          data.id = doc.id;
-          projects.push(data);
-          budget += parseInt(data.budget);
-        });
-        setCollectionData(projects);
-        setTotalBudget(budget);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-
-    setCollectionUnsub({ f: unsub });
+    if(currentUser.email == 'auditor@audit.com') {
+      const unsub = onSnapshot(
+        query(collection(db, `projects`), where('ready_to_audit', '==', true)),
+        (querySnapshot) => {
+          const projects = [];
+          let budget = 0;
+          querySnapshot.forEach((doc) => {
+            const data = doc.data();
+            data.id = doc.id;
+            projects.push(data);
+            budget += parseInt(data.budget);
+          });
+          setCollectionData(projects);
+          setTotalBudget(budget);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+      setCollectionUnsub({ f: unsub });
+    } else {
+      const unsub = onSnapshot(
+        query(collection(db, `projects`)),
+        (querySnapshot) => {
+          const projects = [];
+          let budget = 0;
+          querySnapshot.forEach((doc) => {
+            const data = doc.data();
+            data.id = doc.id;
+            projects.push(data);
+            budget += parseInt(data.budget);
+          });
+          setCollectionData(projects);
+          setTotalBudget(budget);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+      setCollectionUnsub({ f: unsub });
+    }
   }
 
   useEffect(() => {
@@ -59,10 +81,22 @@ const HomeView = () => {
     };
   }, [currentUser]);
 
+  useEffect(async () => {
+    const querySnapshot = await getDocs(collection(db, "users"), where('email', '==', currentUser.email));
+    const arr = [];
+    var temp;
+    querySnapshot.forEach((doc) => {
+      temp = doc.data();
+      temp.id = doc.id;
+      arr.push(temp);
+      setCurrentUserId(doc.id);
+    });
+  }, []);
+
   return (
     <div className="container">
       <HomeViewTypography variant="h6">
-        NGO Dashboard
+        {currentUser.email == 'auditor@audit.com' ? 'Auditor Dashboard': 'NGO Dashboard'}
       </HomeViewTypography>
       <Box sx={{ flexGrow: 1 }}>
         <Grid container columnSpacing={14}>

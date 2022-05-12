@@ -82,6 +82,7 @@ const LoginComponent = ({ ...props }) => {
           lg={2}
           xl={2}
           style={{
+          marginTop: '40px',
           marginLeft: '30px',
           marginRight: 'auto'
         }}
@@ -175,7 +176,8 @@ const LoginComponent = ({ ...props }) => {
                 fontWeight: 'bold',
                 fontSize: '18px',
                 marginTop: '12px',
-                marginLeft: '35px'
+                marginLeft: '35px',
+                marginBottom: '75px'
               }}
             >
               <img
