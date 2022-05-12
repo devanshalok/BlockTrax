@@ -1,0 +1,24 @@
+:local(.styles) {
+    font-family: 'Roboto';
+    .MuiInputBase-root  {
+        color: $white35;
+    }
+    .ForwardRef-iconButton-2 {
+        color: $white35;   
+    }
+    .ForwardRef-root-1 {
+        margin-bottom: 15px;
+    }
+    .MuiTable-root {
+        background-color: #1D2024;
+        overflow: 'none';
+    }
+    .MuiTableHead-root .MuiTableCell-root{
+        color: $green;
+        font-weight: bold;
+    }
+    .MuiTableBody-root .MuiTableCell-root{
+        color: $white35;
+        font-weight: 300;
+    }    
+}

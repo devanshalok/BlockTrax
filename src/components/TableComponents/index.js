@@ -11,13 +11,12 @@ import SearchBar from 'material-ui-search-bar'
 import { styled } from '@mui/material/styles'
 import { styles } from './styles.scss'
 
-const TableComponent = (props) => {
+const TableComponents = (props) => {
   const [rows, setRows] = useState([])
   const [filtRows, setFiltRows] = useState([])
   const [searched, setSearched] = useState('')
-  const createData = (no, name, budget, spend, audited, id) => {
+  const createData = (name, budget, spend, audited, id) => {
     return {
-      no,
       name,
       budget,
       spend,
@@ -28,7 +27,7 @@ const TableComponent = (props) => {
   let ogRows = [];
   useEffect(() => {
     for(let i=0; i<props.data.length; i++) {
-      ogRows.push(createData(i+1, props.data[i].name, props.data[i].budget, props.data[i].description||1000, props.data[i].audited, props.data[i].id));
+      ogRows.push(createData(props.data[i].vendorname, props.data[i].transactiontype, props.data[i].description,props.data[i].amount, props.data[i].key));
     }
     setRows(ogRows);
     setFiltRows(ogRows);
@@ -81,13 +80,13 @@ const TableComponent = (props) => {
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 onClick={() => {window.setTimeout(()=> window.location.href ='#/projects?projectId='+row.id, 300)}}
               >
-                <TableCell component="th" scope="row">
-                  {row.no}
-                </TableCell>
+                
                 <TableCell align="center">{row.name}</TableCell>
                 <TableCell align="center">{row.budget}</TableCell>
                 <TableCell align="center">{row.spend}</TableCell>
                 <TableCell align="center">{String(row.audited)}</TableCell>
+                <TableCell style={{overflow:'hide',maxWidth:'100px'}} align="center">{String(row.id)}</TableCell>
+            
               </StyledTableRow>);
             })}
           </TableBody>
@@ -96,10 +95,10 @@ const TableComponent = (props) => {
     </div>
   )
 }
-TableComponent.propTypes = {
+TableComponents.propTypes = {
   headers: PropTypes.array,
   data: PropTypes.array
 }
 
-TableComponent.defaultProps = {}
-export default TableComponent
+TableComponents.defaultProps = {}
+export default TableComponents

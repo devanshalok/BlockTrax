@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Modal from '@material-ui/core/Modal'
 import Backdrop from '@material-ui/core/Backdrop'
 import Fade from '@material-ui/core/Fade'
-import SignMessage from '../SignMessage'
+import VerifyMessage from '../VerifyMessage'
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -32,7 +32,7 @@ export default function AnimatedModal() {
   return (
     <div style={{ backgroundColor: '#414141' }}>
       <Button style={{ float: 'right', marginBottom: '20px' }} variant="contained" color="" onClick={handleOpen}>
-        Add Transaction
+        Verify Message
       </Button>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -48,7 +48,7 @@ export default function AnimatedModal() {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-          <SignMessage />
+          <VerifyMessage />
           </div>
         </Fade>
       </Modal>

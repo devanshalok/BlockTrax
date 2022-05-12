@@ -81,17 +81,20 @@ const HomeView = () => {
     };
   }, [currentUser]);
 
-  useEffect(async () => {
-    const querySnapshot = await getDocs(collection(db, "users"), where('email', '==', currentUser.email));
-    const arr = [];
-    var temp;
-    querySnapshot.forEach((doc) => {
-      temp = doc.data();
-      temp.id = doc.id;
-      arr.push(temp);
-      setCurrentUserId(doc.id);
-    });
+  useEffect(() => {
+    (async () => {
+      const querySnapshot = await getDocs(collection(db, "users"), where('email', '==', currentUser.email));
+      const arr = [];
+      var temp;
+      querySnapshot.forEach((doc) => {
+        temp = doc.data();
+        temp.id = doc.id;
+        arr.push(temp);
+        setCurrentUserId(doc.id);
+      });
+    })();
   }, []);
+
 
   return (
     <div className="container">
