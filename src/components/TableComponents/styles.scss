@@ -11,7 +11,7 @@
     }
     .MuiTable-root {
         background-color: #1D2024;
-        overflow: 'none';
+        overflow: 'hidden';
     }
     .MuiTableHead-root .MuiTableCell-root{
         color: $green;
@@ -20,5 +20,6 @@
     .MuiTableBody-root .MuiTableCell-root{
         color: $white35;
         font-weight: 300;
+        overflow: hidden;
     }    
 }

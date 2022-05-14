@@ -19,11 +19,9 @@ const styles = {
 const LandingPage = () => {
   return (
     <Box style={styles.boxContainer}>
-      <Grid container columnSpacing={12} style={{ backgroundColor: "#000000" }}>
-        <Grid item xs={8} direction="row"
-  justifyContent="center"
-  alignItems="center">
-          <img src={logo} style={{width: '40px', height: 'auto', verticalAlign: 'middle', border: '1px solid green', borderRadius: '50%', padding: '2px'}}/>
+      <Grid container columnSpacing={10} style={{ backgroundColor: "#000000" }}>
+        <Grid item xs={8} direction="row" justifyContent="center" alignItems="center">
+          <img src={logo} style={{width: '40px', height: 'auto', verticalAlign: 'middle', border: '1px solid green', borderRadius: '50%', padding: '2px', display: 'inline'}}/>
           <Typography
             variant="subtitle1"
             style={{
