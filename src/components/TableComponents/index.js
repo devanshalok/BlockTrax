@@ -74,7 +74,6 @@ const TableComponents = (props) => {
               return(<StyledTableRow
                 key={row.name}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                onClick={() => {window.setTimeout(()=> window.location.href ='#/projects?projectId='+row.id, 300)}}
               >
                 
                 <TableCell style={{maxWidth:'100px'}}align="left">{row.name}</TableCell>
