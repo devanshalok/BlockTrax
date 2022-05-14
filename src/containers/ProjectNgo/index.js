@@ -66,7 +66,7 @@ const ProjectNgo = () => {
 
 
   return (
-    <div >
+    <div className="container">
       <HomeViewTypography variant="h6">
        {
           currentUser.email!='auditor@audit.com'?

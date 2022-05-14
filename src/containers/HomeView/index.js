@@ -6,7 +6,7 @@ import { styled }           from '@mui/material/styles'
 import { Typography }       from '@material-ui/core'
 import { Button }           from '@mui/material'
 import { query, collection, onSnapshot, where, getDocs, doc } from "firebase/firestore";
-import { db } from "../../firebase";
+import { db } from '../../firebase';
 import { useAuth } from "../../contexts/AuthContext";
 import CardComponent        from '../../components/CardComponent'
 import TableComponent       from '../../components/TableComponent'
@@ -52,25 +52,29 @@ const HomeView = () => {
       );
       setCollectionUnsub({ f: unsub });
     } else {
-      const unsub = onSnapshot(
-        query(collection(db, `projects`)),
-        (querySnapshot) => {
-          const projects = [];
-          let budget = 0;
-          querySnapshot.forEach((doc) => {
-            const data = doc.data();
-            data.id = doc.id;
-            projects.push(data);
-            budget += parseInt(data.budget);
-          });
-          setCollectionData(projects);
-          setTotalBudget(budget);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-      setCollectionUnsub({ f: unsub });
+      if(currentUserId) {
+        const docRef = doc(db, "users", currentUserId);
+        debugger;
+        const unsub = onSnapshot(
+          query(collection(db, `projects`), where('owner', '==', docRef)),
+          (querySnapshot) => {
+            const projects = [];
+            let budget = 0;
+            querySnapshot.forEach((doc) => {
+              const data = doc.data();
+              data.id = doc.id;
+              projects.push(data);
+              budget += parseInt(data.budget);
+            });
+            setCollectionData(projects);
+            setTotalBudget(budget);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+        setCollectionUnsub({ f: unsub });
+      }
     }
   }
 
@@ -79,7 +83,7 @@ const HomeView = () => {
     return function cleanup() {
       if (collectionUnsub.f) collectionUnsub.f();
     };
-  }, [currentUser]);
+  }, [currentUserId]);
 
   useEffect(() => {
     (async () => {

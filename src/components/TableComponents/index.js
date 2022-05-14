@@ -65,11 +65,7 @@ const TableComponents = (props) => {
           <TableHead>
             <TableRow>
               {props.headers.map((ele, ind) => {
-                if(ind == 0) {
-                  return(<TableCell>{ele}</TableCell>)
-                } else {
-                  return(<TableCell align="center">{ele}</TableCell>)
-                }
+                return(<TableCell align="left">{ele}</TableCell>)
               })}
             </TableRow>
           </TableHead>
@@ -81,11 +77,11 @@ const TableComponents = (props) => {
                 onClick={() => {window.setTimeout(()=> window.location.href ='#/projects?projectId='+row.id, 300)}}
               >
                 
-                <TableCell align="center">{row.name}</TableCell>
-                <TableCell align="center">{row.budget}</TableCell>
-                <TableCell align="center">{row.spend}</TableCell>
-                <TableCell align="center">{String(row.audited)}</TableCell>
-                <TableCell style={{overflow:'hide',maxWidth:'100px'}} align="center">{String(row.id)}</TableCell>
+                <TableCell style={{maxWidth:'100px'}}align="left">{row.name}</TableCell>
+                <TableCell style={{maxWidth:'100px'}}align="left">{row.budget}</TableCell>
+                <TableCell style={{maxWidth:'100px'}}align="left">{row.spend}</TableCell>
+                <TableCell style={{maxWidth:'50px'}}align="left">{String(row.audited)}</TableCell>
+                <TableCell style={{maxWidth:'150px', textOverflow: "ellipsis", whiteSpace: "wrap"}} align="left">{String(row.id)}</TableCell>
             
               </StyledTableRow>);
             })}
