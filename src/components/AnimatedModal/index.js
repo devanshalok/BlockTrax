@@ -11,13 +11,18 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    overflowY:'auto'
+    overflowY:'auto',
+    maxWidth: "75%",
+    marginLeft: "auto",
+    marginRight: "auto",
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3)
+    padding: theme.spacing(2, 4, 3),
+    maxHeight: "75%",
+    overflow: "scroll"
   }
 }))
 export default function AnimatedModal() {

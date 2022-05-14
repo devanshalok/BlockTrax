@@ -50,7 +50,7 @@ export default function SignMessage() {
   };
 
   return (
-    <form className="m-4" onSubmit={handleSign}>
+    <form className="m-4" onSubmit={handleSign} style={{margin: '15px'}}>
       <div className="credit-card w-full shadow-lg mx-auto rounded-xl bg-white">
         <main className="mt-4 p-4">
           <h1 className="text-xl font-semibold text-gray-700 text-center">

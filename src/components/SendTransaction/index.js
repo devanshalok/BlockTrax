@@ -76,6 +76,7 @@ const SendTransaction = () => {
       <button
         type="submit"
         className="btn btn-primary submit-button focus:ring focus:outline-none w-full"
+        style={{marginBottom: '5px'}}
       >
         Submit
       </button>
