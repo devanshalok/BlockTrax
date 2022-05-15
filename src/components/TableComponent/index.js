@@ -79,7 +79,7 @@ const TableComponent = (props) => {
               return(<StyledTableRow
                 key={row.name}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                onClick={() => {window.setTimeout(()=> window.location.href ='#/projects?projectId='+row.id, 300)}}
+                onClick={() => {window.setTimeout(()=> window.location.href ='#/projects?p_id='+row.id+'&p_name='+row.name, 300)}}
               >
                 <TableCell component="th" scope="row">
                   {row.no}

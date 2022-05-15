@@ -11,24 +11,27 @@ import SearchBar from 'material-ui-search-bar'
 import { styled } from '@mui/material/styles'
 import { styles } from './styles.scss'
 import Checkbox from '@mui/material/Checkbox';
+import { useAuth } from '../../contexts/AuthContext'
 
 const TableComponents = (props) => {
   const [rows, setRows] = useState([])
   const [filtRows, setFiltRows] = useState([])
-  const [searched, setSearched] = useState('')
-  const createData = (name, budget, spend, audited, id) => {
+  const [searched, setSearched] = useState('');
+  const currentUser = useAuth().currentUser;
+  const createData = (name, budget, spend, audited, id, isChecked) => {
     return {
       name,
       budget,
       spend,
       audited,
-      id
+      id,
+      isChecked
     }
   }
   let ogRows = [];
   useEffect(() => {
     for(let i=0; i<props.data.length; i++) {
-      ogRows.push(createData(props.data[i].vendorname, props.data[i].transactiontype, props.data[i].description,props.data[i].amount, props.data[i].key, ));
+      ogRows.push(createData(props.data[i].vendorname, props.data[i].transactiontype, props.data[i].description,props.data[i].amount, props.data[i].key, props.data[i].checked));
     }
     setRows(ogRows);
     setFiltRows(ogRows);
@@ -66,6 +69,13 @@ const TableComponents = (props) => {
           <TableHead>
             <TableRow>
               {props.headers.map((ele, ind) => {
+                if(ind==0) {
+                  if(currentUser.email !== 'auditor@audit.com') {
+                    return null
+                  } else {
+                    return(<TableCell align="left">{ele}</TableCell>)
+                  }
+                }
                 return(<TableCell align="left">{ele}</TableCell>)
               })}
             </TableRow>
@@ -76,14 +86,12 @@ const TableComponents = (props) => {
                 key={row.name}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                
-                <TableCell style={{maxWidth:'5px'}}><Checkbox onClick={(e)=>{props.handlecheckbox(e,index)}} /></TableCell>
+                {currentUser.email == 'auditor@audit.com' && <TableCell style={{maxWidth:'5px'}}><Checkbox checked={row.isChecked} onClick={()=>{props.handlecheckbox(row.id)}} /></TableCell>}
                 <TableCell style={{maxWidth:'100px'}}align="left">{row.name}</TableCell>
                 <TableCell style={{maxWidth:'100px'}}align="left">{row.budget}</TableCell>
                 <TableCell style={{maxWidth:'100px'}}align="left">{row.spend}</TableCell>
                 <TableCell style={{maxWidth:'50px'}}align="left">{String(row.audited)}</TableCell>
                 <TableCell style={{maxWidth:'150px', textOverflow: "ellipsis", whiteSpace: "wrap"}} align="left">{String(row.id)}</TableCell>
-            
               </StyledTableRow>);
             })}
           </TableBody>
@@ -94,7 +102,8 @@ const TableComponents = (props) => {
 }
 TableComponents.propTypes = {
   headers: PropTypes.array,
-  data: PropTypes.array
+  data: PropTypes.array,
+  handlecheckbox: PropTypes.func
 }
 
 TableComponents.defaultProps = {}
