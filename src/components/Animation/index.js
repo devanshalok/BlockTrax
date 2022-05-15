@@ -32,7 +32,7 @@ export default function AnimatedModal(props) {
   console.log(props.checkboxData)
   return (
     <div style={{ backgroundColor: '#414141' }}>
-      <Button style={{ float: 'right', marginTop: '30px' }} variant="contained" color="" onClick={handleOpen}>
+      <Button variation="contained" color="primary" onClick={handleOpen}>
         Verify A Transaction
       </Button>
       <Modal
@@ -43,10 +43,7 @@ export default function AnimatedModal(props) {
         onClose={handleClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
-        BackdropProps={{
-                    timeout: 500
-                }}
-        
+        BackdropProps={{timeout: 500}}
       >
         <Fade in={open}>
           <div className={classes.paper}>

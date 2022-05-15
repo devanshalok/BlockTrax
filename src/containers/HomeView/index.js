@@ -54,7 +54,6 @@ const HomeView = () => {
     } else {
       if(currentUserId) {
         const docRef = doc(db, "users", currentUserId);
-        debugger;
         const unsub = onSnapshot(
           query(collection(db, `projects`), where('owner', '==', docRef)),
           (querySnapshot) => {
