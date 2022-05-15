@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper'
 import SearchBar from 'material-ui-search-bar'
 import { styled } from '@mui/material/styles'
 import { styles } from './styles.scss'
+import Checkbox from '@mui/material/Checkbox';
 
 const TableComponents = (props) => {
   const [rows, setRows] = useState([])
@@ -27,7 +28,7 @@ const TableComponents = (props) => {
   let ogRows = [];
   useEffect(() => {
     for(let i=0; i<props.data.length; i++) {
-      ogRows.push(createData(props.data[i].vendorname, props.data[i].transactiontype, props.data[i].description,props.data[i].amount, props.data[i].key));
+      ogRows.push(createData(props.data[i].vendorname, props.data[i].transactiontype, props.data[i].description,props.data[i].amount, props.data[i].key, ));
     }
     setRows(ogRows);
     setFiltRows(ogRows);
@@ -70,12 +71,13 @@ const TableComponents = (props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {filtRows.map(row => {
+            {filtRows.map((row, index) => {
               return(<StyledTableRow
                 key={row.name}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 
+                <TableCell style={{maxWidth:'5px'}}><Checkbox onClick={(e)=>{props.handlecheckbox(e,index)}} /></TableCell>
                 <TableCell style={{maxWidth:'100px'}}align="left">{row.name}</TableCell>
                 <TableCell style={{maxWidth:'100px'}}align="left">{row.budget}</TableCell>
                 <TableCell style={{maxWidth:'100px'}}align="left">{row.spend}</TableCell>

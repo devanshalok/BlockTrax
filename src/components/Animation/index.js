@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2, 4, 3)
   }
 }))
-export default function AnimatedModal() {
+export default function AnimatedModal(props) {
   const classes = useStyles()
   const [open, setOpen] = React.useState(false)
   const handleOpen = () => {
@@ -29,10 +29,11 @@ export default function AnimatedModal() {
   const handleClose = () => {
     setOpen(false)
   }
+  console.log(props.checkboxData)
   return (
     <div style={{ backgroundColor: '#414141' }}>
       <Button style={{ float: 'right', marginBottom: '20px' }} variant="contained" color="" onClick={handleOpen}>
-        Verify Message
+        Verify A Transaction!
       </Button>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -45,10 +46,11 @@ export default function AnimatedModal() {
         BackdropProps={{
                     timeout: 500
                 }}
+        
       >
         <Fade in={open}>
           <div className={classes.paper}>
-          <VerifyMessage />
+          <VerifyMessage checkboxData={props.checkboxData} />
           </div>
         </Fade>
       </Modal>

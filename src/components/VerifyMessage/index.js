@@ -34,18 +34,18 @@ export default function VerifyMessage() {
     });
 
     if (isValid) {
-      setSuccessMsg("Signature is valid!");
+      setSuccessMsg("Transaction is valid!");
     } else {
-      setError("Invalid signature");
+      setError("Invalid Transaction");
     }
   };
-
+ 
   return (
     <form className="m-4" onSubmit={handleVerification}>
       <div className="credit-card w-full shadow-lg mx-auto rounded-xl bg-white">
         <main className="mt-4 p-4">
           <h1 className="text-xl font-semibold text-gray-700 text-center">
-            Verify signature
+            Verify Transaction
           </h1>
           <div className="">
             <div className="my-3">
@@ -55,7 +55,10 @@ export default function VerifyMessage() {
                 name="message"
                 className="textarea w-full h-24 textarea-bordered focus:ring focus:outline-none"
                 placeholder="Message"
+                
+
               />
+              
             </div>
             <div className="my-3">
               <textarea
@@ -82,7 +85,7 @@ export default function VerifyMessage() {
             type="submit"
             className="btn btn-primary submit-button focus:ring focus:outline-none w-full"
           >
-            Verify signature
+            Verify Transaction!
           </button>
         </footer>
         <div className="p-4 mt-4">

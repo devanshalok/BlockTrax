@@ -26,11 +26,20 @@ const HomeViewTypography = styled(Typography)(({ theme }) => ({
 
 const ProjectNgo = () => {
   const [collectionData, setCollectionData] = useState([]);
+  const [checkboxData, setcheckboxData] = useState([]);
   const [totalBudget, setTotalBudget] = useState(0);
   const [collectionUnsub, setCollectionUnsub] = useState({ f: null });
   const currentUser = useAuth().currentUser;
-  const tableHeaders=['Vendor Name', 'Time Stamp', 'Description', 'Amount', 'Key']
+  const tableHeaders=['Select','Vendor Name', 'Time Stamp', 'Description', 'Amount', 'Key']
   
+  const handleCheckbox = (e,index) =>
+{
+  const filterTransaction = collectionData.filter((item, ind ) => ind==index);
+   setcheckboxData(filterTransaction) 
+   e.target.checked=true;
+
+}
+
   function getCollectionData() {
     if (collectionUnsub.f) collectionUnsub.f();
     const unsub = onSnapshot(
@@ -91,19 +100,21 @@ const ProjectNgo = () => {
 
         </Grid>
       </Box>
-      <TableComponents  headers={tableHeaders} data={collectionData} />
+      <TableComponents  headers={tableHeaders} data={collectionData} handlecheckbox={handleCheckbox} />
       {
         currentUser.email!='auditor@audit.com'?
         <Button onClick={event =>  window.location.href='#/dashboard'} style={{ marginTop: '30px', marginLeft: '600px' }}>SEND FOR AUDIT!</Button>
         :
-        <Grid container alignItems="left" spacing ={0} justifyContent="center">
+        <Box sx={{flexGrow:1}}>
+        <Grid container columnSpacing={12}>
           <Grid item xs={6}>
-          <Button onClick={event =>  window.location.href='#/dashboard'} style={{ marginTop: '30px', marginLeft: '600px' }}>VERIFY TRANSACTION!</Button>
+          <Button onClick={event =>  window.location.href='#/dashboard'} style={{ marginTop: '30px', marginLeft: '600px' }}>VERIFY All TRANSACTIONS!</Button>
           </Grid>
           <Grid item xs={6}>
-            <Item style={{ marginTop: '30px', marginLeft: '600px',  }}><Animation /></Item>
+            <Item style={{ marginTop: '30px', marginLeft: '600px' }}><Animation checkboxData={checkboxData} /></Item>
           </Grid>
           </Grid>
+          </Box>
       }
 
       
