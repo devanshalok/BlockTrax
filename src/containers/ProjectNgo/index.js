@@ -35,9 +35,7 @@ const ProjectNgo = () => {
   const handleCheckbox = (e,index) =>
 {
   const filterTransaction = collectionData.filter((item, ind ) => ind==index);
-   setcheckboxData(filterTransaction) 
-   e.target.checked=true;
-
+   setcheckboxData(filterTransaction);
 }
 
   function getCollectionData() {

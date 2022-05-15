@@ -10,10 +10,11 @@ import Paper from '@material-ui/core/Paper'
 import SearchBar from 'material-ui-search-bar'
 import { styled } from '@mui/material/styles'
 import { styles } from './styles.scss'
-import Checkbox from '@mui/material/Checkbox';
+import Radio from '@mui/material/Radio';
 
 const TableComponents = (props) => {
   const [rows, setRows] = useState([])
+  const [selectedTransaction, setSelectedTransaction] = useState();
   const [filtRows, setFiltRows] = useState([])
   const [searched, setSearched] = useState('')
   const createData = (name, budget, spend, audited, id) => {
@@ -77,7 +78,7 @@ const TableComponents = (props) => {
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 
-                <TableCell style={{maxWidth:'5px'}}><Checkbox onClick={(e)=>{props.handlecheckbox(e,index)}} /></TableCell>
+                <TableCell style={{maxWidth:'5px'}}><Radio checked={selectedTransaction === row.name} value={row.name} onClick={(e)=>{ setSelectedTransaction(row.name); props.handlecheckbox(e,index);}} /></TableCell>
                 <TableCell style={{maxWidth:'100px'}}align="left">{row.name}</TableCell>
                 <TableCell style={{maxWidth:'100px'}}align="left">{row.budget}</TableCell>
                 <TableCell style={{maxWidth:'100px'}}align="left">{row.spend}</TableCell>

@@ -17,7 +17,7 @@ const verifyMessage = async ({ message, address, signature }) => {
   }
 };
 
-export default function VerifyMessage() {
+export default function VerifyMessage(props) {
   const [error, setError] = useState();
   const [successMsg, setSuccessMsg] = useState();
 
@@ -50,11 +50,13 @@ export default function VerifyMessage() {
           <div className="">
             <div className="my-3">
               <textarea
+              disabled
                 required
                 type="text"
                 name="message"
                 className="textarea w-full h-24 textarea-bordered focus:ring focus:outline-none"
                 placeholder="Message"
+                value={props.checkboxData[0].transactiontype}
                 
 
               />
@@ -71,11 +73,13 @@ export default function VerifyMessage() {
             </div>
             <div className="my-3">
               <input
+              disabled
                 required
                 type="text"
                 name="address"
                 className="textarea w-full input input-bordered focus:ring focus:outline-none"
                 placeholder="Signer address"
+                value={props.checkboxData[0].key}
               />
             </div>
           </div>
