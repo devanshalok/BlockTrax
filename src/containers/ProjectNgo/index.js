@@ -11,7 +11,7 @@ import Button from '../../components/Button'
 import TableComponents       from '../../components/TableComponents'
 import AnimatedModal from '../../components/AnimatedModal'
 import Animation from '../../components/Animation'
-
+import './index.scss';
 
 const Item = styled(Paper)(({ theme }) => ({
   marginBottom: theme.spacing(1)
@@ -35,9 +35,7 @@ const ProjectNgo = () => {
   const handleCheckbox = (e,index) =>
 {
   const filterTransaction = collectionData.filter((item, ind ) => ind==index);
-   setcheckboxData(filterTransaction) 
-   e.target.checked=true;
-
+   setcheckboxData(filterTransaction);
 }
 
   function getCollectionData() {
@@ -103,18 +101,23 @@ const ProjectNgo = () => {
       <TableComponents  headers={tableHeaders} data={collectionData} handlecheckbox={handleCheckbox} />
       {
         currentUser.email!='auditor@audit.com'?
-        <Button onClick={event =>  window.location.href='#/dashboard'} style={{ marginTop: '30px', marginLeft: '600px' }}>SEND FOR AUDIT!</Button>
+        <Button onClick={event =>  window.location.href='#/dashboard'} style={{ marginTop: '30px' }}>SEND FOR AUDIT!</Button>
         :
-        <Box sx={{flexGrow:1}}>
-        <Grid container columnSpacing={12}>
-          <Grid item xs={6}>
-          <Button onClick={event =>  window.location.href='#/dashboard'} style={{ marginTop: '30px', marginLeft: '600px' }}>VERIFY All TRANSACTIONS!</Button>
-          </Grid>
-          <Grid item xs={6}>
-            <Item style={{ marginTop: '30px', marginLeft: '600px' }}><Animation checkboxData={checkboxData} /></Item>
-          </Grid>
-          </Grid>
-          </Box>
+        // <Box>
+        // <Grid container >
+        //   <Grid item xs={6}>
+        //   <Button onClick={event =>  window.location.href='#/dashboard'} style={{ marginTop: '30px'}}>VERIFY All TRANSACTIONS!</Button>
+        //   </Grid>
+        //   <Grid item xs={6}>
+        //     {/* <Item style={{ marginTop: '30px' }}><Animation checkboxData={checkboxData} /></Item> */}
+        //     <Animation style={{marginTop: '30px'}} checkboxData={checkboxData}/>
+        //   </Grid>
+        //   </Grid>
+        //   </Box>
+        <div className="button-container">
+             <Button onClick={event =>  window.location.href='#/dashboard'} style={{ marginTop: '30px'}}>VERIFY All TRANSACTIONS</Button>
+             <Animation style={{marginTop: '30px'}} checkboxData={checkboxData}/>
+          </div>
       }
 
       
