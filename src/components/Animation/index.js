@@ -32,8 +32,8 @@ export default function AnimatedModal(props) {
   console.log(props.checkboxData)
   return (
     <div style={{ backgroundColor: '#414141' }}>
-      <Button style={{ float: 'right', marginBottom: '20px' }} variant="contained" color="" onClick={handleOpen}>
-        Verify A Transaction!
+      <Button style={{ float: 'right', marginTop: '30px' }} variant="contained" color="" onClick={handleOpen}>
+        Verify A Transaction
       </Button>
       <Modal
         aria-labelledby="transition-modal-title"
