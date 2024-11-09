@@ -121,6 +121,9 @@ Contributions to BlockTrax are welcome! Please see `CONTRIBUTING.md` for our gui
 ## Authors
 
 - **Devansh Alok** - Initial work - [devanshalok](https://github.com/devanshalok)
+- **Pradyumna Raparti** - Initial work - [prady](https://github.com/voidprady)
+- **Auni Bagchi** - Initial work - [devanshalok](https://github.com/aunib)
+- **Rushi Sharma** - Initial work - [devanshalok](https://github.com/rushis)
 
 ## License
 
